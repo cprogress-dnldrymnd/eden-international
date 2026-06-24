@@ -10,6 +10,8 @@ WordPress child theme based on the **Motto** parent theme by WebGeniusLab.
 | `functions.php` | Enqueues parent stylesheet; registers widget assets and Elementor hooks. |
 | `screenshot.png` | Theme preview image shown in the WP admin. |
 | `assets/css/logo-marquee.css` | CSS for the Logo Marquee Elementor widget (registered, not enqueued globally). |
+| `assets/css/fonts.css` | `@font-face` rules for the self-hosted families in `assets/fonts/`. Enqueued on frontend + Elementor editor/preview. |
+| `assets/fonts/` | Self-hosted webfonts: Atkinson Hyperlegible, Orbitron (variable), Bai Jamjuree. |
 | `inc/elementor/class-logo-marquee-widget.php` | `Eden_Logo_Marquee_Widget` — custom Elementor widget class. |
 
 ## Key conventions
@@ -18,6 +20,14 @@ WordPress child theme based on the **Motto** parent theme by WebGeniusLab.
 - **Text domain:** `motto-child` — use this in any `__()` / `_e()` translation calls.
 - **Enqueue pattern:** parent style is loaded via `get_template_directory_uri()` (not `get_stylesheet_directory_uri()`), which is correct for child themes that need the parent's CSS.
 - **Widget assets:** registered with `wp_register_style()` (not enqueued globally); the widget pulls the style in via `get_style_depends()` so it only loads on pages that use it.
+
+## Custom fonts
+
+Self-hosted families in `assets/fonts/` are declared in `assets/css/fonts.css` (`eden-fonts` style handle) and registered in Elementor's font picker from `functions.php`:
+
+- The stylesheet is enqueued on the frontend, `elementor/editor/after_enqueue_styles`, and `elementor/preview/enqueue_styles` so the fonts render while editing too.
+- A custom picker group **Eden International** (`eden-fonts`) is added via `elementor/fonts/groups`; the families are added to it via `elementor/fonts/additional_fonts`.
+- The picker keys (`Atkinson Hyperlegible`, `Orbitron`, `Bai Jamjuree`) **must** match the `font-family` names in `fonts.css` exactly — Elementor outputs the key as the CSS value but does **not** load the `@font-face`; that's what `fonts.css` is for.
 
 ## Custom Elementor widgets
 

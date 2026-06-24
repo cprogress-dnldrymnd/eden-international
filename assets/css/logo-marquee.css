@@ -1,0 +1,104 @@
+/* Eden International – Logo Marquee widget */
+
+.eden-logo-marquee {
+	--eden-marquee-duration: 25s;
+	--eden-marquee-gap: 50px;
+	--eden-marquee-logo-height: 60px;
+	--eden-marquee-opacity: 1;
+	--eden-marquee-fade: 0px;
+	width: 100%;
+	overflow: hidden;
+}
+
+/* Edge fade mask (0 width = no fade). */
+.eden-logo-marquee {
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent 0,
+		#000 var(--eden-marquee-fade),
+		#000 calc(100% - var(--eden-marquee-fade)),
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent 0,
+		#000 var(--eden-marquee-fade),
+		#000 calc(100% - var(--eden-marquee-fade)),
+		transparent 100%
+	);
+}
+
+.eden-logo-marquee__track {
+	display: flex;
+	width: max-content;
+	flex-wrap: nowrap;
+	animation: eden-marquee var(--eden-marquee-duration) linear infinite;
+	will-change: transform;
+}
+
+.eden-logo-marquee--right .eden-logo-marquee__track {
+	animation-direction: reverse;
+}
+
+.eden-logo-marquee[data-pause-hover="yes"]:hover .eden-logo-marquee__track {
+	animation-play-state: paused;
+}
+
+.eden-logo-marquee__group {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+.eden-logo-marquee__item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	padding: 0 calc(var(--eden-marquee-gap) / 2);
+}
+
+.eden-logo-marquee__link {
+	display: inline-flex;
+	align-items: center;
+	line-height: 0;
+}
+
+.eden-logo-marquee__img {
+	height: var(--eden-marquee-logo-height);
+	width: auto;
+	max-width: none;
+	display: block;
+	opacity: var(--eden-marquee-opacity);
+	transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.eden-logo-marquee--grayscale .eden-logo-marquee__img {
+	filter: grayscale(100%);
+}
+
+.eden-logo-marquee--grayscale .eden-logo-marquee__item:hover .eden-logo-marquee__img {
+	filter: grayscale(0);
+	opacity: 1;
+}
+
+@keyframes eden-marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+	.eden-logo-marquee__track {
+		animation: none;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.eden-logo-marquee__group[aria-hidden="true"] {
+		display: none;
+	}
+}

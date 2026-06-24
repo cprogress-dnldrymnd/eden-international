@@ -67,10 +67,13 @@
 	line-height: 0;
 }
 
-.eden-logo-marquee__img {
-	height: var(--eden-marquee-logo-height);
-	width: auto;
-	max-width: none;
+/* Scoped + !important so the parent theme / Elementor image resets
+   (e.g. `.elementor img { height: auto }`, specificity 0,1,1) can't override
+   the configured logo height. The CSS var still drives responsive values. */
+.eden-logo-marquee .eden-logo-marquee__img {
+	height: var(--eden-marquee-logo-height) !important;
+	width: auto !important;
+	max-width: none !important;
 	display: block;
 	opacity: var(--eden-marquee-opacity);
 	transition: opacity 0.3s ease, filter 0.3s ease;

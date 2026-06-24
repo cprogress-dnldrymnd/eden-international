@@ -28,8 +28,9 @@ Widgets live under `inc/elementor/` and are registered via the `elementor/widget
 A CSS-only infinite-scroll ticker for client/partner logos.
 
 - **Category:** `eden-international` (registered in `functions.php`)
-- **Controls:** repeater of logo images + optional links; direction (left/right), speed (seconds), pause-on-hover, logo height, gap, opacity, edge-fade width, grayscale-on-hover toggle.
-- **Animation:** pure CSS `translateX(-50%)` loop using two identical `__group` copies inside a `__track` wrapper. Respects `prefers-reduced-motion` (wraps logos instead of scrolling).
+- **Controls:** repeater of logo images + optional links; direction (left/right), speed (seconds), pause-on-hover, logo height, gap, opacity, edge-fade width, grayscale-on-hover toggle, edge-blur toggle (width + strength).
+- **Animation:** pure CSS `translateX(-50%)` loop using two identical `__group` copies inside a `__track` wrapper. Optional frosted-glass edge overlays via `backdrop-filter: blur()` (`.eden-logo-marquee__blur--left/right`), conditionally rendered when `edge_blur = yes`. Respects `prefers-reduced-motion` (wraps logos instead of scrolling).
+- **Render helpers:** `render_logo()` outputs a single logo item with an optional `<a>` wrapper; `get_logo_image_html()` builds the `<img>` tag, preferring `wp_get_attachment_image()` for srcset/alt when an attachment ID is available.
 - **Style handle:** `eden-logo-marquee` → `assets/css/logo-marquee.css`
 
 ## Deployment

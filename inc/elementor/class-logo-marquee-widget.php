@@ -260,6 +260,69 @@ class Eden_Logo_Marquee_Widget extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'edge_blur',
+			array(
+				'label'        => esc_html__( 'Edge Blur (left & right)', 'motto-child' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'motto-child' ),
+				'label_off'    => esc_html__( 'No', 'motto-child' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'separator'    => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'edge_blur_width',
+			array(
+				'label'      => esc_html__( 'Blur Width', 'motto-child' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 10,
+						'max' => 400,
+					),
+					'%'  => array(
+						'min' => 0,
+						'max' => 40,
+					),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 120,
+				),
+				'condition'  => array( 'edge_blur' => 'yes' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .eden-logo-marquee' => '--eden-marquee-blur-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'edge_blur_strength',
+			array(
+				'label'      => esc_html__( 'Blur Strength', 'motto-child' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 1,
+						'max' => 30,
+					),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 8,
+				),
+				'condition'  => array( 'edge_blur' => 'yes' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .eden-logo-marquee' => '--eden-marquee-blur-strength: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -303,6 +366,10 @@ class Eden_Logo_Marquee_Widget extends Widget_Base {
 					</div>
 				<?php endfor; ?>
 			</div>
+			<?php if ( 'yes' === $settings['edge_blur'] ) : ?>
+				<span class="eden-logo-marquee__blur eden-logo-marquee__blur--left" aria-hidden="true"></span>
+				<span class="eden-logo-marquee__blur eden-logo-marquee__blur--right" aria-hidden="true"></span>
+			<?php endif; ?>
 		</div>
 		<?php
 	}

@@ -6,6 +6,9 @@
 	--eden-marquee-logo-height: 60px;
 	--eden-marquee-opacity: 1;
 	--eden-marquee-fade: 0px;
+	--eden-marquee-blur-width: 120px;
+	--eden-marquee-blur-strength: 8px;
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 }
@@ -80,6 +83,30 @@
 .eden-logo-marquee--grayscale .eden-logo-marquee__item:hover .eden-logo-marquee__img {
 	filter: grayscale(0);
 	opacity: 1;
+}
+
+/* Frosted edge overlays — blur logos as they scroll off each side. */
+.eden-logo-marquee__blur {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
+	width: var(--eden-marquee-blur-width);
+	pointer-events: none;
+	-webkit-backdrop-filter: blur(var(--eden-marquee-blur-strength));
+	backdrop-filter: blur(var(--eden-marquee-blur-strength));
+}
+
+.eden-logo-marquee__blur--left {
+	left: 0;
+	-webkit-mask-image: linear-gradient(to right, #000 0, transparent 100%);
+	mask-image: linear-gradient(to right, #000 0, transparent 100%);
+}
+
+.eden-logo-marquee__blur--right {
+	right: 0;
+	-webkit-mask-image: linear-gradient(to left, #000 0, transparent 100%);
+	mask-image: linear-gradient(to left, #000 0, transparent 100%);
 }
 
 @keyframes eden-marquee {

@@ -11,3 +11,7 @@ Text Domain: motto-child
     line-height: 1;
     display: inline-flex;
 }
+
+p:last-child {
+    margin-bottom: 0;
+}

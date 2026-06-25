@@ -6,3 +6,8 @@ Version: 1.0
 Template: motto
 Text Domain: motto-child
 */
+
+.elementor-icon-wrapper {
+    line-height: 1;
+    display: inline-flex;
+}

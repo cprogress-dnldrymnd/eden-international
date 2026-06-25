@@ -7,7 +7,7 @@ Template: motto
 Text Domain: motto-child
 */
 
-.elementor-icon-wrapper {
+.elementor-widget-icon, .elementor-icon-wrapper {
     line-height: 1;
     display: inline-flex;
 }

@@ -17,7 +17,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Icons_Manager;
-use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 
 class Eden_Swiper_Nav_Widget extends Widget_Base {
@@ -310,23 +309,59 @@ class Eden_Swiper_Nav_Widget extends Widget_Base {
 			)
 		);
 
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		// Direct properties (not a group control) so we can force them past the
+		// parent theme's <button> styling with !important.
+		$this->add_control(
+			'border_style',
 			array(
-				'name'      => 'button_border',
-				'selector'  => '{{WRAPPER}} .eden-swiper-nav__btn',
-				'fields_options' => array(
-					'border' => array( 'default' => 'solid' ),
-					'width'  => array(
-						'default' => array(
-							'top'    => '1',
-							'right'  => '1',
-							'bottom' => '1',
-							'left'   => '1',
-							'unit'   => 'px',
-						),
+				'label'     => esc_html__( 'Border Type', 'motto-child' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'solid',
+				'options'   => array(
+					'none'   => esc_html__( 'None', 'motto-child' ),
+					'solid'  => esc_html__( 'Solid', 'motto-child' ),
+					'dashed' => esc_html__( 'Dashed', 'motto-child' ),
+					'dotted' => esc_html__( 'Dotted', 'motto-child' ),
+					'double' => esc_html__( 'Double', 'motto-child' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .eden-swiper-nav__btn' => 'border-style: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'border_width',
+			array(
+				'label'      => esc_html__( 'Border Width', 'motto-child' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 12,
 					),
-					'color'  => array( 'default' => '#2D2D2D' ),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 1,
+				),
+				'condition'  => array( 'border_style!' => 'none' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .eden-swiper-nav__btn' => 'border-width: {{SIZE}}{{UNIT}} !important;',
+				),
+			)
+		);
+
+		$this->add_control(
+			'border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'motto-child' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#2D2D2D',
+				'condition' => array( 'border_style!' => 'none' ),
+				'selectors' => array(
+					'{{WRAPPER}} .eden-swiper-nav__btn' => 'border-color: {{VALUE}} !important;',
 				),
 			)
 		);
@@ -368,7 +403,7 @@ class Eden_Swiper_Nav_Widget extends Widget_Base {
 				'label'     => esc_html__( 'Border Color', 'motto-child' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .eden-swiper-nav__btn:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .eden-swiper-nav__btn:hover' => 'border-color: {{VALUE}} !important;',
 				),
 			)
 		);
@@ -393,7 +428,7 @@ class Eden_Swiper_Nav_Widget extends Widget_Base {
 					'isLinked' => true,
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .eden-swiper-nav__btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .eden-swiper-nav__btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
 				),
 			)
 		);

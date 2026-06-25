@@ -15,6 +15,10 @@
 	vertical-align: middle;
 }
 
+/* color/background use !important so the parent theme's generic <button>
+   styling (e.g. `.elementor button { background: accent }`) can't override the
+   widget's Style-tab colours. The CSS vars still drive the configured values.
+   Border/radius are forced from the widget controls (also !important). */
 .eden-swiper-nav__btn {
 	display: inline-flex;
 	align-items: center;
@@ -22,13 +26,16 @@
 	flex: 0 0 auto;
 	width: var(--eden-nav-size);
 	height: var(--eden-nav-size);
-	padding: 0;
+	min-width: 0;
+	padding: 0 !important;
 	margin: 0;
 	cursor: pointer;
-	color: var(--eden-nav-color);
-	background: var(--eden-nav-bg);
+	color: var(--eden-nav-color) !important;
+	background: var(--eden-nav-bg) !important;
 	border: 1px solid #2d2d2d;
 	line-height: 1;
+	box-shadow: none;
+	text-shadow: none;
 	-webkit-appearance: none;
 	appearance: none;
 	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
@@ -36,8 +43,8 @@
 
 .eden-swiper-nav__btn:hover,
 .eden-swiper-nav__btn:focus-visible {
-	color: var(--eden-nav-color-hover);
-	background: var(--eden-nav-bg-hover);
+	color: var(--eden-nav-color-hover) !important;
+	background: var(--eden-nav-bg-hover) !important;
 }
 
 /* Disabled (start/end of a non-looping slider). */
@@ -56,13 +63,13 @@
 	line-height: 0;
 }
 
-.eden-swiper-nav__icon i {
+.eden-swiper-nav .eden-swiper-nav__icon i {
 	font-size: var(--eden-nav-icon-size);
 	line-height: 1;
-	color: inherit;
+	color: inherit !important;
 }
 
-.eden-swiper-nav__icon svg {
+.eden-swiper-nav .eden-swiper-nav__icon svg {
 	width: var(--eden-nav-icon-size);
 	height: var(--eden-nav-icon-size);
 	fill: currentColor;

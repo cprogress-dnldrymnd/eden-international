@@ -18,4 +18,5 @@ p:last-child {
 
 .aspect-ratio-9-16, .aspect-ratio-9-16 img {
     aspect-ratio: 9/16;
+    object-fit: cover;
 }

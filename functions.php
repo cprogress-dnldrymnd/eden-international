@@ -21,6 +21,21 @@ function eden_register_widget_assets() {
 		array(),
 		'1.0'
 	);
+
+	wp_register_style(
+		'eden-swiper-nav',
+		get_stylesheet_directory_uri() . '/assets/css/swiper-nav.css',
+		array(),
+		'1.0'
+	);
+
+	wp_register_script(
+		'eden-swiper-nav',
+		get_stylesheet_directory_uri() . '/assets/js/swiper-nav.js',
+		array( 'jquery' ),
+		'1.0',
+		true
+	);
 }
 add_action( 'wp_enqueue_scripts', 'eden_register_widget_assets' );
 
@@ -43,6 +58,8 @@ add_action( 'elementor/elements/categories_registered', 'eden_register_elementor
  */
 function eden_register_elementor_widgets( $widgets_manager ) {
 	require_once get_stylesheet_directory() . '/inc/elementor/class-logo-marquee-widget.php';
+	require_once get_stylesheet_directory() . '/inc/elementor/class-swiper-nav-widget.php';
 	$widgets_manager->register( new \Eden_Logo_Marquee_Widget() );
+	$widgets_manager->register( new \Eden_Swiper_Nav_Widget() );
 }
 add_action( 'elementor/widgets/register', 'eden_register_elementor_widgets' );

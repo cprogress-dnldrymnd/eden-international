@@ -1,0 +1,75 @@
+/* Eden International – Swiper Navigation widget */
+
+.eden-swiper-nav {
+	--eden-nav-size: 44px;
+	--eden-nav-icon-size: 18px;
+	--eden-nav-gap: 10px;
+	--eden-nav-color: #ffffff;
+	--eden-nav-bg: rgba(0, 0, 20, 0.4);
+	--eden-nav-color-hover: #ffffff;
+	--eden-nav-bg-hover: rgba(255, 255, 255, 0.08);
+	--eden-nav-disabled-opacity: 0.35;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--eden-nav-gap);
+	vertical-align: middle;
+}
+
+.eden-swiper-nav__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: var(--eden-nav-size);
+	height: var(--eden-nav-size);
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: var(--eden-nav-color);
+	background: var(--eden-nav-bg);
+	border: 1px solid #2d2d2d;
+	line-height: 1;
+	-webkit-appearance: none;
+	appearance: none;
+	transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.eden-swiper-nav__btn:hover,
+.eden-swiper-nav__btn:focus-visible {
+	color: var(--eden-nav-color-hover);
+	background: var(--eden-nav-bg-hover);
+}
+
+/* Disabled (start/end of a non-looping slider). */
+.eden-swiper-nav__btn--disabled,
+.eden-swiper-nav__btn:disabled {
+	opacity: var(--eden-nav-disabled-opacity);
+	cursor: default;
+	pointer-events: none;
+}
+
+/* Icon sizing — works for both Elementor icon fonts (<i>) and inline SVGs. */
+.eden-swiper-nav__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 0;
+}
+
+.eden-swiper-nav__icon i {
+	font-size: var(--eden-nav-icon-size);
+	line-height: 1;
+	color: inherit;
+}
+
+.eden-swiper-nav__icon svg {
+	width: var(--eden-nav-icon-size);
+	height: var(--eden-nav-icon-size);
+	fill: currentColor;
+}
+
+/* While the controlling Swiper is being located, keep arrows interactive
+   but visually neutral; the JS adds --ready once a Swiper is bound. */
+.eden-swiper-nav:not(.eden-swiper-nav--ready) .eden-swiper-nav__btn {
+	cursor: progress;
+}

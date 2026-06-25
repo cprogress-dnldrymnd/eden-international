@@ -15,3 +15,7 @@ Text Domain: motto-child
 p:last-child {
     margin-bottom: 0;
 }
+
+.aspect-ratio-9-16, .aspect-ratio-9-16 img {
+    aspect-ratio: 9/16;
+}

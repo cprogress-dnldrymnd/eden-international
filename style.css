@@ -8,8 +8,8 @@ Text Domain: motto-child
 */
 
 body {
-    --body-background-color: #ffffff;
-    --body-background-rgb-color: 255, 255, 255;
+    --body-background-color: #ffffff !important;
+    --body-background-rgb-color: 255, 255, 255 !important;
 }
 
 .elementor-widget-icon,

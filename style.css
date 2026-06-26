@@ -253,4 +253,5 @@ body:not(.single-post) .post--breadcrumbs {
 .elementor-field-textual.elementor-field-textual.elementor-field-textual {
     height: auto;
     line-height: 1;
+    margin-bottom: 0;
 }

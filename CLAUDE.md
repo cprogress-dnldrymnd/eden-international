@@ -14,6 +14,7 @@ WordPress child theme based on the **Motto** parent theme by WebGeniusLab.
 | `assets/js/swiper-nav.js` | Front-end logic for the Swiper Navigation widget (finds + syncs the nearest Swiper). |
 | `inc/elementor/class-logo-marquee-widget.php` | `Eden_Logo_Marquee_Widget` — custom Elementor widget class. |
 | `inc/elementor/class-swiper-nav-widget.php` | `Eden_Swiper_Nav_Widget` — custom Elementor widget class. |
+| `single.php` | Minimal single-post template: header → content → footer (bypasses parent theme's default single layout). |
 
 ## Key conventions
 

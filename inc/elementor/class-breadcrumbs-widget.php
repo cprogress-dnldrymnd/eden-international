@@ -101,15 +101,15 @@ class Eden_Breadcrumbs_Widget extends Widget_Base {
 		);
 
 		$this->add_control(
-			'show_taxonomy',
+			'show_post_type',
 			array(
-				'label'        => esc_html__( 'Show Post Category', 'motto-child' ),
+				'label'        => esc_html__( 'Show Post Type', 'motto-child' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'label_on'     => esc_html__( 'Yes', 'motto-child' ),
 				'label_off'    => esc_html__( 'No', 'motto-child' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
-				'description'  => esc_html__( 'Include the primary category/term in the trail on single posts.', 'motto-child' ),
+				'description'  => esc_html__( 'Include the post type archive link in the trail on single posts.', 'motto-child' ),
 			)
 		);
 
@@ -384,7 +384,7 @@ class Eden_Breadcrumbs_Widget extends Widget_Base {
 		$items   = array();
 		$post_id = get_queried_object_id();
 
-		// Page ancestors (hierarchical) or the post's primary term (posts).
+		// Page ancestors (hierarchical) or the post type archive (posts/CPTs).
 		if ( is_page() ) {
 			$ancestors = array_reverse( get_post_ancestors( $post_id ) );
 			foreach ( $ancestors as $ancestor_id ) {
@@ -393,8 +393,8 @@ class Eden_Breadcrumbs_Widget extends Widget_Base {
 					'url'  => get_permalink( $ancestor_id ),
 				);
 			}
-		} elseif ( 'yes' === $settings['show_taxonomy'] ) {
-			$items = array_merge( $items, $this->get_post_term_items( $post_id ) );
+		} elseif ( 'yes' === $settings['show_post_type'] ) {
+			$items = array_merge( $items, $this->get_post_type_items( $post_id ) );
 		}
 
 		$items[] = array(
@@ -406,54 +406,46 @@ class Eden_Breadcrumbs_Widget extends Widget_Base {
 	}
 
 	/**
-	 * Resolve the primary term chain for a post (deepest term + its ancestors).
+	 * A single crumb for the post's type, linking to its archive when one exists.
 	 *
 	 * @param int $post_id Post ID.
 	 * @return array[]
 	 */
-	protected function get_post_term_items( $post_id ) {
-		$items     = array();
+	protected function get_post_type_items( $post_id ) {
 		$post_type = get_post_type( $post_id );
+		$obj       = get_post_type_object( $post_type );
 
-		// Pick a sensible taxonomy: category for posts, otherwise the first public one.
-		$taxonomy = 'category';
-		if ( 'post' !== $post_type ) {
-			$taxonomies = get_object_taxonomies( $post_type, 'names' );
-			$taxonomies = array_values( array_filter( $taxonomies, 'is_taxonomy_hierarchical' ) );
-			$taxonomy   = $taxonomies ? $taxonomies[0] : '';
+		if ( ! $obj ) {
+			return array();
 		}
 
-		if ( ! $taxonomy ) {
-			return $items;
-		}
+		$url = get_post_type_archive_link( $post_type );
 
-		$terms = get_the_terms( $post_id, $taxonomy );
-		if ( empty( $terms ) || is_wp_error( $terms ) ) {
-			return $items;
-		}
-
-		// Prefer the deepest term so the trail reflects the full hierarchy.
-		$primary = $terms[0];
-		foreach ( $terms as $term ) {
-			if ( count( get_ancestors( $term->term_id, $taxonomy ) ) > count( get_ancestors( $primary->term_id, $taxonomy ) ) ) {
-				$primary = $term;
-			}
-		}
-
-		$chain = array_reverse( get_ancestors( $primary->term_id, $taxonomy ) );
-		$chain[] = $primary->term_id;
-
-		foreach ( $chain as $term_id ) {
-			$term = get_term( $term_id, $taxonomy );
-			if ( $term && ! is_wp_error( $term ) ) {
-				$items[] = array(
-					'text' => $term->name,
-					'url'  => get_term_link( $term ),
+		// 'post' has no post type archive by default — fall back to the static posts page.
+		if ( ! $url && 'post' === $post_type ) {
+			$blog_id = (int) get_option( 'page_for_posts' );
+			if ( $blog_id ) {
+				return array(
+					array(
+						'text' => get_the_title( $blog_id ),
+						'url'  => get_permalink( $blog_id ),
+					),
 				);
 			}
 		}
 
-		return $items;
+		if ( ! $url ) {
+			return array();
+		}
+
+		$label = ! empty( $obj->labels->name ) ? $obj->labels->name : $obj->label;
+
+		return array(
+			array(
+				'text' => $label,
+				'url'  => $url,
+			),
+		);
 	}
 
 	/**

@@ -54,8 +54,8 @@ Standalone prev/next arrows that control the **nearest Swiper instance** on the 
 A context-aware breadcrumb trail rendered server-side from the current query. Default separator is `|`.
 
 - **Category:** `eden-international`
-- **Controls:** separator text (default `|`); show-home toggle + home label; show-current toggle; show-post-category toggle; use-SEO-plugin toggle. Style: alignment, gap, typography, and link / link-hover / current / separator colours.
-- **Trail logic (PHP):** `get_breadcrumb_items()` branches on the WP conditional tags — front page, blog index (`page_for_posts`), singular (page ancestors via `get_post_ancestors`; posts get the deepest primary term chain via `get_post_term_items()`), term archives (with term ancestors), post-type archives, author/date/search/404. Date archives link the parent year/month levels. The last item renders as the non-linked current crumb with `aria-current="page"`.
+- **Controls:** separator text (default `|`); show-home toggle + home label; show-current toggle; show-post-type toggle; use-SEO-plugin toggle. Style: alignment, gap, typography, and link / link-hover / current / separator colours.
+- **Trail logic (PHP):** `get_breadcrumb_items()` branches on the WP conditional tags — front page, blog index (`page_for_posts`), singular (page ancestors via `get_post_ancestors`; posts/CPTs get a post-type crumb linking to the post type archive via `get_post_type_items()`, falling back to the static posts page for the `post` type), term archives (with term ancestors), post-type archives, author/date/search/404. Date archives link the parent year/month levels. The last item renders as the non-linked current crumb with `aria-current="page"`.
 - **SEO hand-off:** when *Use SEO Plugin Trail* is on, delegates to `yoast_breadcrumb()` or `rank_math_get_breadcrumbs()` if active, wrapping it in `.eden-breadcrumbs--seo`; otherwise falls back to the built-in trail.
 - **Markup/a11y:** `<nav aria-label="Breadcrumb">` → `<ol class="eden-breadcrumbs__list">`; separators are `aria-hidden` spans.
 - **Style handle:** `eden-breadcrumbs` → `assets/css/breadcrumbs.css`, pulled in via `get_style_depends()`.

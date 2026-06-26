@@ -71,6 +71,7 @@ p:last-child {
     line-height: 1 !important;
     display: flex;
     flex-wrap: wrap;
+    gap: 5px;
 }
 
 .post-terms-style-2 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
@@ -79,6 +80,27 @@ p:last-child {
     display: inline-flex !important;
     align-items: center;
     border: 1px solid;
+    padding: 5px 15px;
+    border-radius: 100px;
+}
+
+
+
+.post-terms-style-3
+    .elementor-post-info__terms-list.elementor-post-info__terms-list.elementor-post-info__terms-list.elementor-post-info__terms-list {
+    font-size: 0;
+    line-height: 1 !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.post-terms-style-3 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
+    font-size: 0.625rem;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center;
+    border: 1px solid #363636;
     padding: 5px 15px;
     border-radius: 100px;
 }

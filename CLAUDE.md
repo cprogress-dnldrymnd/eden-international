@@ -11,9 +11,11 @@ WordPress child theme based on the **Motto** parent theme by WebGeniusLab.
 | `screenshot.png` | Theme preview image shown in the WP admin. |
 | `assets/css/logo-marquee.css` | CSS for the Logo Marquee Elementor widget (registered, not enqueued globally). |
 | `assets/css/swiper-nav.css` | CSS for the Swiper Navigation Elementor widget (registered, not enqueued globally). |
+| `assets/css/breadcrumbs.css` | CSS for the Breadcrumbs Elementor widget (registered, not enqueued globally). |
 | `assets/js/swiper-nav.js` | Front-end logic for the Swiper Navigation widget (finds + syncs the nearest Swiper). |
 | `inc/elementor/class-logo-marquee-widget.php` | `Eden_Logo_Marquee_Widget` — custom Elementor widget class. |
 | `inc/elementor/class-swiper-nav-widget.php` | `Eden_Swiper_Nav_Widget` — custom Elementor widget class. |
+| `inc/elementor/class-breadcrumbs-widget.php` | `Eden_Breadcrumbs_Widget` — custom Elementor widget class. |
 | `single.php` | Minimal single-post template: header → content → footer (bypasses parent theme's default single layout). |
 
 ## Key conventions
@@ -46,6 +48,17 @@ Standalone prev/next arrows that control the **nearest Swiper instance** on the 
 - **Controls:** prev/next icon (Elementor `ICONS`); target mode (auto-nearest / custom CSS selector); disable-at-start/end toggle; hide-if-no-slider toggle. Style: alignment, gap, button size, icon size, disabled opacity, and Normal/Hover colours + border + radius + box-shadow.
 - **Sync logic (`assets/js/swiper-nav.js`):** finds the controlling Swiper by walking up the nav's ancestors and picking the geometrically closest `.swiper`/`.swiper-container` in the same container/section (custom selector overrides). Reads the live instance off `el.swiper`, retries while Elementor finishes its async Swiper init, then binds clicks to `slidePrev()`/`slideNext()` and toggles `--disabled` on `slideChange`/`reachBeginning`/`reachEnd`/`update`/`resize`. Disable state is skipped on looping sliders. Re-binds per widget via the `frontend/element_ready/eden_swiper_nav.default` hook (editor + frontend), guarded against double-init.
 - **Style handle:** `eden-swiper-nav` → `assets/css/swiper-nav.css`; **script handle:** `eden-swiper-nav` → `assets/js/swiper-nav.js` (depends on `jquery`). Both pulled in via `get_style_depends()` / `get_script_depends()`.
+
+### Breadcrumbs (`eden_breadcrumbs`)
+
+A context-aware breadcrumb trail rendered server-side from the current query. Default separator is `|`.
+
+- **Category:** `eden-international`
+- **Controls:** separator text (default `|`); show-home toggle + home label; show-current toggle; show-post-category toggle; use-SEO-plugin toggle. Style: alignment, gap, typography, and link / link-hover / current / separator colours.
+- **Trail logic (PHP):** `get_breadcrumb_items()` branches on the WP conditional tags — front page, blog index (`page_for_posts`), singular (page ancestors via `get_post_ancestors`; posts get the deepest primary term chain via `get_post_term_items()`), term archives (with term ancestors), post-type archives, author/date/search/404. Date archives link the parent year/month levels. The last item renders as the non-linked current crumb with `aria-current="page"`.
+- **SEO hand-off:** when *Use SEO Plugin Trail* is on, delegates to `yoast_breadcrumb()` or `rank_math_get_breadcrumbs()` if active, wrapping it in `.eden-breadcrumbs--seo`; otherwise falls back to the built-in trail.
+- **Markup/a11y:** `<nav aria-label="Breadcrumb">` → `<ol class="eden-breadcrumbs__list">`; separators are `aria-hidden` spans.
+- **Style handle:** `eden-breadcrumbs` → `assets/css/breadcrumbs.css`, pulled in via `get_style_depends()`.
 
 ## Deployment
 

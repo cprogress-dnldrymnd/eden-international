@@ -1,0 +1,70 @@
+/* Eden International – Breadcrumbs widget */
+
+.eden-breadcrumbs {
+	--eden-bc-gap: 8px;
+	--eden-bc-link: inherit;
+	--eden-bc-link-hover: inherit;
+	--eden-bc-current: inherit;
+	--eden-bc-sep: inherit;
+}
+
+.eden-breadcrumbs__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--eden-bc-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.eden-breadcrumbs__item {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--eden-bc-gap);
+	margin: 0;
+	padding: 0;
+}
+
+/* List markers can leak in from the theme's generic <ol>/<li> styling. */
+.eden-breadcrumbs__list,
+.eden-breadcrumbs__item {
+	list-style: none;
+}
+
+.eden-breadcrumbs__item::before,
+.eden-breadcrumbs__item::marker {
+	content: none;
+}
+
+.eden-breadcrumbs__link {
+	color: var(--eden-bc-link) !important;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.eden-breadcrumbs__link:hover,
+.eden-breadcrumbs__link:focus-visible {
+	color: var(--eden-bc-link-hover) !important;
+}
+
+.eden-breadcrumbs__current {
+	color: var(--eden-bc-current);
+}
+
+.eden-breadcrumbs__sep {
+	color: var(--eden-bc-sep);
+	opacity: 0.7;
+	user-select: none;
+}
+
+/* When delegating to an SEO plugin, normalise its inline list spacing. */
+.eden-breadcrumbs--seo a {
+	color: var(--eden-bc-link) !important;
+	text-decoration: none;
+}
+
+.eden-breadcrumbs--seo a:hover,
+.eden-breadcrumbs--seo a:focus-visible {
+	color: var(--eden-bc-link-hover) !important;
+}

@@ -245,3 +245,7 @@ p:last-child {
     font-family: "Bai Jamjuree";
     font-weight: 400;
 }
+
+body:not(.single-post) .post--breadcrumbs {
+    display: none !important;
+}

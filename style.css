@@ -73,7 +73,7 @@ p:last-child {
     flex-wrap: wrap;
 }
 
-.post-terms-style-2 .post-terms-style-1 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
+.post-terms-style-2 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
     font-size: 0.875rem;
     line-height: 1 !important;
     display: inline-flex !important;

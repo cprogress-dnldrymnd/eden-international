@@ -7,6 +7,11 @@ Template: motto
 Text Domain: motto-child
 */
 
+body {
+    --body-background-color: #ffffff;
+    --body-background-rgb-color: 255, 255, 255;
+}
+
 .elementor-widget-icon,
 .elementor-icon-wrapper {
     line-height: 1;
@@ -83,8 +88,6 @@ p:last-child {
     padding: 5px 15px;
     border-radius: 100px;
 }
-
-
 
 .post-terms-style-3
     .elementor-post-info__terms-list.elementor-post-info__terms-list.elementor-post-info__terms-list.elementor-post-info__terms-list {

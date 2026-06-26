@@ -112,3 +112,136 @@ p:last-child {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
+
+.widget_block h2,
+.title-wrapper .title,
+.sidebar [class*="berocket_"] h3 {
+    color: var(--e-global-color-88759c3);
+    font-size: 1.125rem;
+}
+
+.widget.widget_categories ul li a,
+.widget.widget_categories ul li label,
+.widget.widget_product_categories ul li a,
+.widget.widget_product_categories ul li label,
+.widget.widget_layered_nav ul li a,
+.widget.widget_layered_nav ul li label,
+.widget.woocommerce-widget-layered-nav ul li a,
+.widget.woocommerce-widget-layered-nav ul li label,
+.widget.widget_archive ul li a,
+.widget.widget_archive ul li label {
+    color: var(--e-global-color-88759c3);
+    opacity: 0.8;
+    font-size: 0.938rem;
+}
+
+.widget .recent-posts-widget .meta-data::after,
+.widget .recent-posts-widget .meta-data::before {
+    display: none;
+}
+
+.widget .recent-posts-widget .meta-data span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.widget .recent-posts-widget .post__title {
+    font-size: 0.875rem;
+    font-family: "Bai Jamjuree";
+    font-weight: 600;
+    color: #000;
+}
+
+.widget .recent-posts-widget .recent-posts-image_wrapper img {
+    border-radius: 5px;
+}
+
+.prev-link_wrapper .info_wrapper .prev_title,
+.prev-link_wrapper .info_wrapper .next_title,
+.next-link_wrapper .info_wrapper .prev_title,
+.next-link_wrapper .info_wrapper .next_title {
+    font-size: 1.125rem;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.related_posts h4 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.blog-style-standard .blog-post.blog-hero .image-overlay::before,
+.blog-style-standard .blog-post.blog-hero .image-overlay::after,
+.wgl-portfolio-single_item .meta-data::before,
+.blog-post_content .meta-data::before,
+.wgl-portfolio-single_item .meta-data::before,
+.blog-post_content .meta-data::after {
+    display: none;
+}
+
+.blog-style-standard .blog-post.blog-hero {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.post_categories a {
+    color: #fff !important;
+    border-color: #fff !important;
+    pointer-events: none;
+    font-weight: 600;
+    font-family: "Bai Jamjuree";
+}
+
+.wgl-portfolio-single_item .meta-data,
+.blog-post_content .meta-data {
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.blog-style-standard .wgl_col-6 .blog-post_title,
+.blog-style-standard .wgl_col-4 .blog-post_title,
+.blog-style-standard .wgl_col-3 .blog-post_title {
+    font-size: 1.125rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.blog-style-standard .blog-post.blog-hero .blog-post_wrapper .blog-post_content .image-overlay {
+    background-color: #000;
+    opacity: 0.4;
+}
+
+.button-read-more {
+    color: #fff;
+    font-size: 0.938rem;
+}
+
+.wp-block-search .wp-block-search__inside-wrapper .wp-block-search__button {
+    border: none;
+    background-color: transparent !important;
+}
+
+.wp-block-search__inside-wrapper {
+    background-color: #f0f0f0;
+    padding: 5px 20px !important;
+    border-radius: 10px;
+}
+
+.wp-block-search .wp-block-search__inside-wrapper .wp-block-search__input {
+    border: none !important;
+}
+
+.post_featured_bg .meta-data:not(:first-child) {
+    display: none;
+}
+
+.author-widget_text {
+    font-size: 0.938rem;
+    letter-spacing: 0;
+    font-family: "Bai Jamjuree";
+    font-weight: 400;
+}

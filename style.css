@@ -104,3 +104,8 @@ p:last-child {
     padding: 5px 15px;
     border-radius: 100px;
 }
+
+#main {
+    padding-top: 0;
+    padding-bottom: 0;
+}

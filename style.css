@@ -255,6 +255,9 @@ body:not(.single-post) .post--breadcrumbs {
     line-height: 1;
     margin-bottom: 0;
 }
-.wgl-theme-header.header_overlap.wgl-theme-header.header_overlap {
-    top: 40px;
+
+@media (min-width: 1201px) {
+    .wgl-theme-header.header_overlap.wgl-theme-header.header_overlap {
+        top: 40px;
+    }
 }

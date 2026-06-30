@@ -6,7 +6,7 @@ WordPress child theme based on the **Motto** parent theme by WebGeniusLab.
 
 | File | Purpose |
 |------|---------|
-| `style.css` | Theme declaration + global utility CSS (aspect-ratio helpers, icon/paragraph fixes). Add custom CSS here. |
+| `style.css` | Theme declaration + global utility CSS (aspect-ratio helpers, icon/paragraph fixes, `.post-terms-style-1/2/3` tag-list variants, `#main` padding reset). Add custom CSS here. |
 | `functions.php` | Enqueues parent stylesheet; registers widget assets and Elementor hooks. |
 | `screenshot.png` | Theme preview image shown in the WP admin. |
 | `assets/css/logo-marquee.css` | CSS for the Logo Marquee Elementor widget (registered, not enqueued globally). |

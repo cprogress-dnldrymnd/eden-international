@@ -110,15 +110,6 @@ p:last-child {
     border-radius: 100px;
 }
 
-body:not(.home) #main {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-body.home #main{
-    padding-bottom: 0 !important;
-}
-
 .widget_block.widget_block h2,
 .title-wrapper.title-wrapper .title,
 .sidebar.sidebar [class*="berocket_"] h3 {
@@ -260,18 +251,4 @@ body:not(.single-post) .post--breadcrumbs {
     height: auto;
     line-height: 1;
     margin-bottom: 0;
-}
-
-
-@media (max-width: 1200px) {
-    html[lang] {
-        margin-top: 0 !important;
-    }
-    #wpadminbar {
-        display: none !important;
-    }
-    body.admin-bar .wgl-menu_outer {
-        top: 0 !important;
-        height: 100vh;
-    }
 }

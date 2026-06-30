@@ -256,6 +256,11 @@ body:not(.single-post) .post--breadcrumbs {
     margin-bottom: 0;
 }
 
+@media (min-width: 1201px) {
+    body.home .wgl-theme-header.header_overlap.wgl-theme-header.header_overlap {
+        top: 40px;
+    }
+}
 
 @media (max-width: 1200px) {
     html[lang] {

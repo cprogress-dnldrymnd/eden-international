@@ -108,8 +108,12 @@ p:last-child {
     border-radius: 100px;
 }
 
-#main {
+body:not(.home) #main {
     padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+body.home #main{
     padding-bottom: 0 !important;
 }
 
@@ -254,12 +258,6 @@ body:not(.single-post) .post--breadcrumbs {
     height: auto;
     line-height: 1;
     margin-bottom: 0;
-}
-
-@media (min-width: 1201px) {
-    body.home .wgl-theme-header.header_overlap.wgl-theme-header.header_overlap {
-        top: 40px;
-    }
 }
 
 @media (max-width: 1200px) {

@@ -261,3 +261,7 @@ body:not(.single-post) .post--breadcrumbs {
         top: 40px;
     }
 }
+
+@media(max-width: 1200px) {
+    #wpadminbar { display: none !important; }
+}

@@ -50,7 +50,6 @@ p:last-child {
     line-height: 1 !important;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .post-terms-style-1 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
@@ -58,7 +57,6 @@ p:last-child {
     line-height: 1 !important;
     display: inline-flex !important;
     align-items: center;
-    justify-content: center;
 }
 
 .post-terms-style-1 .elementor-post-info__terms-list .elementor-post-info__terms-list-item:not(:last-child):after {
@@ -79,6 +77,7 @@ p:last-child {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    justify-content: center;
 }
 
 .post-terms-style-2 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
@@ -98,6 +97,7 @@ p:last-child {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    justify-content: center
 }
 
 .post-terms-style-3 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
@@ -261,6 +261,7 @@ body:not(.single-post) .post--breadcrumbs {
     line-height: 1;
     margin-bottom: 0;
 }
+
 
 @media (max-width: 1200px) {
     html[lang] {

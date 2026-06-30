@@ -97,7 +97,7 @@ p:last-child {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    justify-content: center
+    justify-content: center;
 }
 
 .post-terms-style-3 .elementor-post-info__terms-list .elementor-post-info__terms-list-item {
@@ -251,4 +251,13 @@ body:not(.single-post) .post--breadcrumbs {
     height: auto;
     line-height: 1;
     margin-bottom: 0;
+}
+
+@media (max-width: 992px) {
+    body.elementor-default.single main .wgl-container,
+    .wgl-container {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }

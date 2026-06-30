@@ -263,6 +263,9 @@ body:not(.single-post) .post--breadcrumbs {
 }
 
 @media (max-width: 1200px) {
+    html[lang] {
+        margin-top: 0 !important;
+    }
     #wpadminbar {
         display: none !important;
     }

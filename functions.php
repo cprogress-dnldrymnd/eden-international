@@ -107,3 +107,16 @@ function dd_remove_extraneous_post_types() {
 
 // Bind the function to the 'init' hook with a late priority (100) to ensure downstream execution.
 add_action( 'init', 'dd_remove_extraneous_post_types', 100 );
+
+/**
+ * Hides the WebGeniusLab admin menu item (#toplevel_page_wgl-dashboard-panel).
+ *
+ * Hooked late on 'admin_menu' so it runs after the parent theme registers the page.
+ *
+ * @since 1.0.0
+ * @return void
+ */
+function dd_hide_wgl_dashboard_menu() {
+	remove_menu_page( 'wgl-dashboard-panel' );
+}
+add_action( 'admin_menu', 'dd_hide_wgl_dashboard_menu', 100 );
